@@ -29,26 +29,26 @@ def category_add(request):
 
     return render(request, 'category_add.html', context)
 
-def category_edit(request, category_id):
+def category_edit(request, pk):
     if request.method == 'POST':
-        form = CategoryForm(request.POST, instance=Category.objects.get(pk=category_id))
+        form = CategoryForm(request.POST, instance=Category.objects.get(pk=pk))
         if form.is_valid():
             form.save()
             return redirect("category_list")
     else:
-        form = CategoryForm(instance=Category.objects.get(pk=category_id))
+        form = CategoryForm(instance=Category.objects.get(pk=pk))
         context = {
             'title': 'Edit Category',
             'form': form,
         }
     return render(request, 'category_edit.html',context)
 
-def category_delete(request, category_id):
+def category_delete(request, pk):
     if request.method == 'POST':
-        Category.objects.get(pk=category_id).delete()
+        Category.objects.get(pk=pk).delete()
         return redirect("category_list")
     else:
-        form = CategoryForm(instance=Category.objects.get(pk=category_id))
+        form = CategoryForm(instance=Category.objects.get(pk=pk))
         context = {
             'title': 'Delete Category',
             'form': form,
