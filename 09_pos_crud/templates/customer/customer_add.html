@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Tambah Pelanggan{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Tambah Pelanggan
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Nama:</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback">{{ form.name.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email:</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">{{ form.email.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}">Telepon:</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                                <div class="invalid-feedback">{{ form.phone.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group form-check">
+                            {{ form.member }}
+                            <label class="form-check-label" for="{{ form.member.id_for_label }}">Member</label>
+                            {% if form.member.errors %}
+                                <div class="invalid-feedback">{{ form.member.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{% url 'customer_list' %}" class="btn btn-secondary">Batal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

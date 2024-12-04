@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Produk{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Edit Produk
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Nama:</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback">{{ form.name.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}">Kategori:</label>
+                            {{ form.category }}
+                            {% if form.category.errors %}
+                                <div class="invalid-feedback">{{ form.category.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.price.id_for_label }}">Harga:</label>
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                                <div class="invalid-feedback">{{ form.price.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.stock.id_for_label }}">Stok:</label>
+                            {{ form.stock }}
+                            {% if form.stock.errors %}
+                                <div class="invalid-feedback">{{ form.stock.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.description.id_for_label }}">Deskripsi:</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback">{{ form.description.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{% url 'product_list' %}" class="btn btn-secondary">Batal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

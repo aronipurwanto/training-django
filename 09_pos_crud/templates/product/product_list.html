@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Daftar Produk{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Daftar Produk
+                    <a href="{% url 'create_product' %}" class="btn btn-primary btn-sm float-right">Tambah Produk</a>
+                </div>
+                <div class="card-body">
+                    <form method="GET" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Cari produk..." value="{{ query }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.category }}</td>
+                                    <td>{{ product.price }}</td>
+                                    <td>{{ product.stock }}</td>
+                                    <td>
+                                        <a href="{% url 'update_product' product.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger btn-sm">Hapus</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% if products.has_other_pages %}
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                {% if products.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">&laquo;</a></li>
+                                {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                {% endif %}
+
+                                {% for i in products.paginator.page_range %}
+                                    {% if products.number == i %}
+                                        <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ i }}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if products.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}{% if query %}&q={{ query }}{% endif %}">&raquo;</a></li>
+                                {% else %}
+                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

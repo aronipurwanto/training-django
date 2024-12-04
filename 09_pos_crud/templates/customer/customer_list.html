@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Daftar Pelanggan{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Daftar Pelanggan
+                    <a href="{% url 'create_customer' %}" class="btn btn-primary btn-sm float-right">Tambah Pelanggan</a>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Telepon</th>
+                                <th>Member</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                                <tr>
+                                    <td>{{ customer.name }}</td>
+                                    <td>{{ customer.email }}</td>
+                                    <td>{{ customer.phone }}</td>
+                                    <td>{{ customer.member }}</td>
+                                    <td>
+                                        <a href="{% url 'update_customer' customer.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{% url 'delete_customer' customer.pk %}" class="btn btn-danger btn-sm">Hapus</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

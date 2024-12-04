@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Hapus Pelanggan{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Hapus Pelanggan
+                </div>
+                <div class="card-body">
+                    <p>Apakah Anda yakin ingin menghapus pelanggan "{{ customer.name }}"?</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                        <a href="{% url 'customer_list' %}" class="btn btn-secondary">Batal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
