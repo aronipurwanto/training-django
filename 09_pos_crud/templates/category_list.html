@@ -4,10 +4,7 @@
 
 {% block content %}
     <h1>{{ title }}</h1>
-    <p>Data 1 : {{ data1 }}</p>
-    <p>Data 2 : {{ data2 }}</p>
-    <p>Category 1 Code : {{ category1.code }}</p>
-    <p>Category 1 Name : {{ category1.name }}</p>
+    <a href="{% url 'category_add' %}" class="btn btn-primary">Add new category</a>
     <table class="table">
         <thead>
             <tr>
@@ -18,7 +15,19 @@
             </tr>
         </thead>
         <tbody>
-
+        {% for c in category_list %}
+            <tr>
+                <th scope="row">{{ c.id }}</th>
+                <td>{{ c.code }}</td>
+                <td>{{ c.name }}</td>
+                <td>
+                    <!--
+                    <a href="{% url 'category_update' c.id %}">Edit</a>
+                    <a href="{% url 'category_delete' c.id %}">Delete</a>
+                    -->
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
