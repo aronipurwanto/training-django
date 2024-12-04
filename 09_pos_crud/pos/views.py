@@ -48,9 +48,9 @@ def category_delete(request, pk):
         Category.objects.get(pk=pk).delete()
         return redirect("category_list")
     else:
-        form = CategoryForm(instance=Category.objects.get(pk=pk))
+        data = Category.objects.get(pk=pk)
         context = {
             'title': 'Delete Category',
-            'form': form,
+            'category': data,
         }
     return render(request,'category_delete.html',context)
