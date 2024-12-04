@@ -21,8 +21,8 @@
                 <td>{{ c.code }}</td>
                 <td>{{ c.name }}</td>
                 <td>
-                    <a href="{% url 'category_edit' c.id %}">Edit</a>
-                    <a href="{% url 'category_delete' c.id %}">Delete</a>
+                    <a href="{% url 'category_edit' c.id %}" class="btn btn-warning btn-xs">Edit</a>
+                    <a href="{% url 'category_delete' c.id %}" class="btn btn-danger btn-xs">Delete</a>
                 </td>
             </tr>
         {% endfor %}
