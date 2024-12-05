@@ -8,16 +8,12 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'  # Atau, spesifikkan field yang ingin disertakan: ['id', 'code', 'name']
 
 class ProductSerializer(serializers.ModelSerializer):
-    category_id = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(),
-        source='category',
-        write_only=True
-    )
+    category_id = serializers.IntegerField(write_only=True)
     category = serializers.StringRelatedField(read_only=True)  # Menampilkan nama kategori saat membaca data
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'category', 'category_id', 'price', 'stock', 'description']
+        fields = ['id', 'name','category', 'category_id', 'price', 'stock', 'description']
 
     def validate(self, data):
         """
