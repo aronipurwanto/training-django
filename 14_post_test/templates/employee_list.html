@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Category List {% endblock %}
+
+{% block content %}
+  <h1>Daftar Karyawan</h1>
+  <a href="{% url 'create_employee' %}" class="btn btn-primary mb-3">Tambah Karyawan</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>Tanggal Lahir</th>
+        <th>Tempat Lahir</th>
+        <th>Agama</th>
+        <th>Gender</th>
+        <th>Departemen</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employees %}
+        <tr>
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.address }}</td>
+          <td>{{ employee.date_of_birth }}</td>
+          <td>{{ employee.place_of_birth }}</td>
+          <td>{{ employee.religion }}</td>
+          <td>{{ employee.gender }}</td>
+          <td>{{ employee.department }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

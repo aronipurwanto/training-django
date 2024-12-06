@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Tambah Karyawan
+          </div>
+          <div class="card-body">
+            <form method="post">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Nama:</label>
+                {{ form.name }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.address.id_for_label }}" class="form-label">Alamat:</label>
+                {{ form.address }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.date_of_birth.id_for_label }}" class="form-label">Tanggal Lahir:</label>
+                {{ form.date_of_birth }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.place_of_birth.id_for_label }}" class="form-label">Tempat Lahir:</label>
+                {{ form.place_of_birth }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.religion.id_for_label }}" class="form-label">Agama:</label>
+                {{ form.religion }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.gender.id_for_label }}" class="form-label">Gender:</label>
+                {{ form.gender }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.department.id_for_label }}" class="form-label">Departemen:</label>
+                {{ form.department }}
+              </div>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
