@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -14,6 +15,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     description = models.TextField(blank=True)  # Deskripsi produk (opsional)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)  # Relasi ke User
+    created_at = models.DateTimeField(auto_now_add=True)  # Waktu pembuatan
 
     def __str__(self):
         return "{}-{}".format(self.id, self.name)

@@ -1,10 +1,13 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
 from .models import Category, Product
 from .serializers import CategorySerializer, ProductSerializer
 
 class CategoryViewSet(viewsets.ModelViewSet):
+    # ... kode lainnya ...
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
@@ -71,6 +74,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAdminUser]  # Ganti IsAdminUser dengan permission yang sesuai
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
